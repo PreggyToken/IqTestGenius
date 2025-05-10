@@ -30,16 +30,9 @@ const HomePage = ({ onSubmit }: HomePageProps) => {
   });
   
   const handleSubmit = (data: any) => {
-    if (!photoFile) {
-      toast({
-        title: "Validation Error",
-        description: "Please upload a photo for gender verification",
-        variant: "destructive",
-      });
-      return;
-    }
-    
-    onSubmit(data, photoFile);
+    // If there's no photo, we'll create a placeholder empty File
+    const fileToSubmit = photoFile || new File([], "placeholder.jpg", { type: "image/jpeg" });
+    onSubmit(data, fileToSubmit);
   };
   
   const handlePhotoChange = (file: File | null) => {
@@ -110,16 +103,14 @@ const HomePage = ({ onSubmit }: HomePageProps) => {
                 name="gender" 
                 label="Gender" 
                 options={genderOptions}
-                required
               />
               
               <FileUpload 
                 form={form} 
                 name="photoFile" 
-                label="Upload photo for gender verification" 
+                label="Optional: Upload your photo" 
                 accept="image/*"
                 maxSize={5}
-                required
                 onChange={handlePhotoChange}
               />
             </div>

@@ -18,8 +18,8 @@ export const questions = pgTable("questions", {
   id: serial("id").primaryKey(),
   question: text("question").notNull(),
   type: text("type").notNull(), // multiple_choice or short_answer
-  options: jsonb("options"), // For multiple choice questions
-  answer: text("answer"), // Correct answer if applicable
+  options: jsonb("options").default(null), // For multiple choice questions
+  answer: text("answer").default(null), // Correct answer if applicable
 });
 
 // Test results schema
@@ -57,7 +57,7 @@ export const userFormSchema = z.object({
     .min(5, { message: "Age must be at least 5" })
     .max(120, { message: "Age must be at most 120" }),
   school: z.string().min(1, { message: "Please enter your last school attended" }),
-  gender: z.string().min(1, { message: "Please select a gender" }),
+  gender: z.string().optional(),
 });
 
 // Question types
