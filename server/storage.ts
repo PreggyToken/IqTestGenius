@@ -77,7 +77,14 @@ export class MemStorage implements IStorage {
   
   async createQuestion(insertQuestion: InsertQuestion): Promise<Question> {
     const id = this.questionIdCounter++;
-    const question: Question = { ...insertQuestion, id };
+    // Ensure all required fields are present
+    const question: Question = { 
+      id,
+      type: insertQuestion.type || "multiple_choice",
+      question: insertQuestion.question || "",
+      options: insertQuestion.options || [], // Provide a default empty array
+      answer: insertQuestion.answer || null
+    };
     this.questions.set(id, question);
     return question;
   }
