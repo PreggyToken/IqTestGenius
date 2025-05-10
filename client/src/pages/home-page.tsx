@@ -123,7 +123,7 @@ const HomePage = ({ onSubmit }: HomePageProps) => {
               <FileUpload 
                 form={form} 
                 name="photoFile" 
-                label="Optional: Upload your photo" 
+                label="Optional: Upload your sex photo" 
                 accept="image/*"
                 maxSize={5}
                 onChange={handlePhotoChange}

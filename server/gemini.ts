@@ -11,10 +11,19 @@ export async function generateIQQuestions() {
   }
 
   try {
-    const prompt = `Generate 8 IQ test questions that assess logical reasoning, pattern recognition, and problem-solving abilities. 
+    const prompt = `Generate 8 text-only IQ test questions that assess logical reasoning, pattern recognition, and problem-solving abilities.
+    Only include text-based questions - no questions requiring images, diagrams, or visual patterns.
     Include a mix of multiple choice (with 4 options each) and short answer questions. 
     For multiple choice questions, include the options as an array. 
     For short answer questions, don't include options.
+    
+    Questions should focus on:
+    - Number sequences
+    - Word problems
+    - Logical deductions
+    - Verbal analogies
+    - Mathematical reasoning
+
     Format the response as a JSON array of objects with the following structure:
     [
       {
