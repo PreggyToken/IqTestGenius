@@ -29,8 +29,13 @@ function App() {
 
   // Handler to navigate to test page after form submission
   const handleStartTest = (data: any, photoFile: File) => {
+    console.log("Start test with data:", data, photoFile);
+    // First save the user data
     setUserData({ ...data, photoFile });
-    setLocation("/test");
+    // Then navigate to the test page
+    setTimeout(() => {
+      setLocation("/test");
+    }, 100);
   };
 
   // Handler to navigate to results page after test completion
@@ -52,7 +57,7 @@ function App() {
         
         <main className="flex-grow container mx-auto px-4 py-8 max-w-5xl">
           <Switch>
-            <Route path="/" exact>
+            <Route path="/">
               <HomePage onSubmit={handleStartTest} />
             </Route>
             

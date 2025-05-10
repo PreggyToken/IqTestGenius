@@ -27,12 +27,23 @@ const HomePage = ({ onSubmit }: HomePageProps) => {
       school: "",
       gender: "",
     },
+    mode: "onSubmit",
   });
   
   const handleSubmit = (data: any) => {
-    // If there's no photo, we'll create a placeholder empty File
-    const fileToSubmit = photoFile || new File([], "placeholder.jpg", { type: "image/jpeg" });
-    onSubmit(data, fileToSubmit);
+    try {
+      // If there's no photo, we'll create a placeholder empty File
+      const fileToSubmit = photoFile || new File([], "placeholder.jpg", { type: "image/jpeg" });
+      console.log("Submitting form data:", data, fileToSubmit);
+      onSubmit(data, fileToSubmit);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Error",
+        description: "Failed to submit form. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
   
   const handlePhotoChange = (file: File | null) => {
@@ -66,7 +77,11 @@ const HomePage = ({ onSubmit }: HomePageProps) => {
         </div>
         
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+          <form 
+            onSubmit={form.handleSubmit(handleSubmit)} 
+            className="space-y-6"
+            onError={(errors) => console.error('Form validation errors:', errors)}
+          >
             <FormInput 
               form={form} 
               name="name" 

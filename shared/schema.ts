@@ -18,8 +18,8 @@ export const questions = pgTable("questions", {
   id: serial("id").primaryKey(),
   question: text("question").notNull(),
   type: text("type").notNull(), // multiple_choice or short_answer
-  options: jsonb("options").default(null), // For multiple choice questions
-  answer: text("answer").default(null), // Correct answer if applicable
+  options: jsonb("options"), // For multiple choice questions
+  answer: text("answer"), // Correct answer if applicable
 });
 
 // Test results schema
