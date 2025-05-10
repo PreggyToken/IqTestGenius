@@ -1,5 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Route, Switch, useLocation } from "wouter";
+
+// Helper component for redirects
+const RedirectComponent = ({ to }: { to: string }) => {
+  const [, setLocation] = useLocation();
+  
+  useEffect(() => {
+    setLocation(to);
+  }, [to, setLocation]);
+  
+  return <div className="text-center py-8">Redirecting...</div>;
+};
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 import Header from "@/components/layout/header";
@@ -75,9 +86,7 @@ function App() {
                   onComplete={handleCompleteTest}
                 />
               ) : (
-                <div className="redirect-message">
-                  {setLocation("/")}
-                </div>
+                <RedirectComponent to="/" />
               )}
             </Route>
             
@@ -90,9 +99,7 @@ function App() {
                   onRestart={handleRestartTest}
                 />
               ) : (
-                <div className="redirect-message">
-                  {setLocation("/")}
-                </div>
+                <RedirectComponent to="/" />
               )}
             </Route>
             
