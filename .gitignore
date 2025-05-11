@@ -1,6 +1,33 @@
+# Dependencies
 node_modules
+
+# Build outputs
 dist
-.DS_Store
+out
+build
 server/public
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Replit specific
+.replit
+.replit.nix
+.config
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Logs and debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Misc
 vite.config.ts.*
 *.tar.gz
+.cache
